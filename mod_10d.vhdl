@@ -38,8 +38,13 @@ begin
             count := "0000";
         elsif (clk'event and clk ='1') then
             if (load_n ='0') then
-                -- carrega data_in
-                count := data_in;
+                -- Garante que só entra BCD
+                if (unsigned(data_in) > 9) then
+                    count := "1001"; -- 9
+                else 
+                    -- carrega data_in
+                    count := data_in;
+                end if;
             elsif (en ='1') then
                 -- decrementa a conta
                 case data_out is
