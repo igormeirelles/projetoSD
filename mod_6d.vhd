@@ -16,7 +16,7 @@ entity mod_6d is
         en : in std_logic; -- Enable: faz o contador girar
         data_out : buffer std_logic_vector(3 downto 0); -- Binário que representa o número atual
         tc : out std_logic; -- Indica quando o contador vai reiniciar o ciclo
-        zero : out std_logic -- Indica quando o contador está zerado
+        zero : buffer std_logic -- Indica quando o contador está zerado
     );
 end entity mod_6d;
 
@@ -25,9 +25,8 @@ end entity mod_6d;
 architecture padrao of mod_6d is
 begin
 
-    tc <= not (data_out(3) or data_out(2) or data_out(1) or data_out(0));
     zero <= not (data_out(3) or data_out(2) or data_out(1) or data_out(0));
-    -- zero <= tc; ??? talvez possa ser removido
+    tc <= en and zero;
 
     -- Detecta uma borda de subida de clock ou clear assíncrono
     process(clr_n, clk, en)

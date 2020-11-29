@@ -67,35 +67,88 @@ BEGIN
 	zero => zero
 	);
 
--- Ciclo completo: 
+-- Entrada maior: 
 --	Zera o contador
---	Insere 0
---	Conta atÃ© chega em 0 novamente
-ciclo_completo : PROCESS                                               
+--	Insere 15 depois zera;
+--  Insere 12 depois zera;
+--  Insere 10 e começa a contar;
+--  Resultado esperado: em todos os casos
+--  o valor será 5
+entrada_maior : PROCESS                                               
 -- variable declarations                                     
 BEGIN                                                                                                        
 
-	-- Zera o contador
-	clr_n <= '0';
-	wait for 10 ns;
+	en <= '0';
+	load_n <= '1';
+	data_in <= "0000";
 	clr_n <= '1';
-	
 	-- Clock de quando espera-se entradas,
 	-- Obs: frequencia aumentada aqui comparado
 	-- ao projeto para facilitar visualizacao
 	clk <= '0';
 	wait for 15 ns;
-	-- Insere 9
-	data_in <= "1001";
-	load_n <= '0';
-	en <= '0';
+	-- Zera o contador
+	clr_n <= '0';
 	clk <= '1';
 	wait for 15 ns;
+	clr_n <= '1';
+	clk <= '0';
+	wait for 15 ns;
+	clk <= '1';
+	-- Insere 15
+	load_n <= '0';
+	data_in <= "1111";	
+	wait for 15 ns;
+	clk <= '0';
+	wait for 15 ns;
+	clk <= '1';
 	load_n <= '1';
-	-- Comeca a contar
+	wait for 15 ns;
+	clk <= '0';
+	wait for 15 ns;
+	clk <= '1';
+	wait for 15 ns;
+	-- Zera
+	clr_n <= '0';
+	clk <= '0';
+	wait for 15 ns;
+	clr_n <= '1';
+	clk <= '1';
+	wait for 15 ns;
+	clk <= '0';
+	wait for 15 ns;
+	clk <= '1';
+	-- Insere 12
+	load_n <= '0';
+	data_in <= "1100";	
+	wait for 15 ns;
+	clk <= '0';
+	wait for 15 ns;
+	clk <= '1';
+	load_n <= '1';
+	wait for 15 ns;
+	clk <= '0';
+	wait for 15 ns;
+	clk <= '1';
+	wait for 15 ns;
+	-- Zera
+	clr_n <= '0';
+	clk <= '0';
+	wait for 15 ns;
+	clr_n <= '1';
+	clk <= '1';
+	wait for 15 ns;
+	-- Insere 10
+	load_n <= '0';
+	data_in <= "1010";	
+	wait for 15 ns;
+	clk <= '0';
+	wait for 15 ns;
+	clk <= '1';
+	-- Come�a a contar
+	load_n <= '1';
 	en <= '1';
 	-- Clock de contagem
-	-- Obs: frequencia tambem aumentada 
 	clk <= '0';
 	wait for 20 ns;
 	clk <= '1'; 
@@ -106,37 +159,13 @@ BEGIN
 	wait for 20 ns;
 	clk <= '0';
 	wait for 20 ns;
-	clk <= '1';
+	clk <= '1'; 
 	wait for 20 ns;
 	clk <= '0';
 	wait for 20 ns;
-	clk <= '1';
-	wait for 20 ns;
-	clk <= '0';
-	wait for 20 ns;
-	clk <= '1';
-	wait for 20 ns;
-	clk <= '0';
-	wait for 20 ns;
-	clk <= '1';
-	wait for 20 ns;
-	clk <= '0';
-	wait for 20 ns;
-	clk <= '1';
-	wait for 20 ns;
-	clk <= '0';
-	wait for 20 ns;
-	clk <= '1';
-	wait for 20 ns;
-	clk <= '0';
-	wait for 20 ns;
-	clk <= '1';
-	wait for 20 ns;
-	clk <= '0';
-	wait for 20 ns;
-	clk <= '1';
-	wait for 20 ns;	 
+	clk <= '1'; 
+	wait for 20 ns;		
 		 
 WAIT;                                                       
-END PROCESS ciclo_completo;                                         
+END PROCESS entrada_maior;                                         
 END mod_6d_arch;

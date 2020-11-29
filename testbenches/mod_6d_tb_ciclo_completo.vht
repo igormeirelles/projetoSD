@@ -69,12 +69,14 @@ BEGIN
 
 -- Ciclo completo: 
 --	Zera o contador
---	Insere 0
---	Conta atÃ© chega em 0 novamente
-cancela_recomeca : PROCESS                                               
+--	Insere 9
+-- Conta até fazer um ciclo completo
+-- E retornar a 5
+ciclo_completo : PROCESS                                               
 -- variable declarations                                     
-BEGIN                                                        
--- Zera o contador
+BEGIN                                                                                                        
+
+	-- Zera o contador
 	clr_n <= '0';
 	wait for 10 ns;
 	clr_n <= '1';
@@ -111,64 +113,31 @@ BEGIN
 	wait for 20 ns;
 	clk <= '1';
 	wait for 20 ns;
-	-- Pausa
-	en <= '0';
-	-- Clock de quando espera-se entradas novamente
-	clk <= '0';
-	wait for 15 ns; 
-	clk <= '1';
-	wait for 15 ns;
-	clk <= '0';
-	wait for 15 ns; 
-	clk <= '1';
-	wait for 15 ns;
-	clk <= '0';
-	wait for 15 ns; 
-	clk <= '1';
-	wait for 15 ns;
-	clk <= '0';
-	wait for 15 ns; 
-	clk <= '1';
-	wait for 15 ns;
-	clk <= '0';
-	wait for 15 ns; 
-	clk <= '1';
-	wait for 15 ns;
-	-- Após um tempo, simula o cancelamento
-	clr_n <= '0';
-	clk <= '0';
-	wait for 15 ns;
-	clr_n <= '1'; 
-	clk <= '1';
-	wait for 15 ns;
-	-- Insere 3
-	data_in <= "0011";
-	load_n <= '0';
-	clk <= '0';
-	wait for 15 ns;
-	clk <= '1';
-	wait for 15 ns;
-	-- Começa a contar
-	load_n <= '1';
-	en <= '1';
-	-- Clock de contagem
 	clk <= '0';
 	wait for 20 ns;
-	clk <= '1'; 
+	clk <= '1';
 	wait for 20 ns;
 	clk <= '0';
 	wait for 20 ns;
-	clk <= '1'; 
+	clk <= '1';
 	wait for 20 ns;
 	clk <= '0';
 	wait for 20 ns;
-	clk <= '1'; 
+	clk <= '1';
 	wait for 20 ns;
 	clk <= '0';
 	wait for 20 ns;
-	clk <= '1'; 
-	wait for 20 ns;		 
+	clk <= '1';
+	wait for 20 ns;
+	clk <= '0';
+	wait for 20 ns;
+	clk <= '1';
+	wait for 20 ns;
+	clk <= '0';
+	wait for 20 ns;
+	clk <= '1';
+	wait for 20 ns;	 
 		 
 WAIT;                                                       
-END PROCESS cancela_recomeca;                                         
+END PROCESS ciclo_completo;                                         
 END mod_6d_arch;
