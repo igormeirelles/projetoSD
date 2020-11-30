@@ -70,7 +70,7 @@ BEGIN
 -- Ciclo completo: 
 --	Zera o contador
 --	Insere 0
---	Conta até chega em 0 novamente
+--	Conta até chegar em 0 novamente
 ciclo_completo : PROCESS                                               
 -- variable declarations                                     
 BEGIN                                                        
